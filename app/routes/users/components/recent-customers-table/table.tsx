@@ -53,9 +53,6 @@ import {
 
 import { recentCustomersColumns } from "./columns";
 import type { RecentCustomerRow } from "./schema";
-
-import { UserProfile } from "../UserProfile";
-import type { UserProfileInfo } from "../UserProfile";
 import { Link } from "react-router";
 const statusOptions = [
   { value: "all", label: "All" },
@@ -141,8 +138,6 @@ export function RecentCustomersTable({ data }: { data: RecentCustomerRow[] }) {
     return "newest";
   }, [sorting]);
 
-  //   const [isOpen ,SetIsOpen]  =React.useState(false)
-  //  const [userInfo,setUserInfo] =React.useState<UserProfileInfo>();
   return (
     <div className="space-y-4">
       <div className="flex flex-col gap-3 xl:flex-row xl:items-center xl:justify-between">
@@ -318,7 +313,7 @@ export function RecentCustomersTable({ data }: { data: RecentCustomerRow[] }) {
                     <TableCell key={cell.id} className="p-3 align-middle">
                       <Link
                         to={`/users/${cell.row.original.id}`}
-                        state={{ user: cell.row.original }} // کل آبجکت کاربر ارسال می‌شود
+                        state={{ user: cell.row.original }}
                         className="block w-full h-full"
                       >
                         {flexRender(
@@ -326,18 +321,8 @@ export function RecentCustomersTable({ data }: { data: RecentCustomerRow[] }) {
                           cell.getContext(),
                         )}
                       </Link>
-                      {/* 
-                      <Link to={`/users/${cell.row.original.id}`}>
-                           {cell.row.original.name}
-                          </Link> 
-                      */}
                     </TableCell>
                   ))}
-                  {/* 
-                      {isOpen && (
-                        <UserProfile isOpen={isOpen} data={userInfo} isClose={(e:boolean)=>SetIsOpen(e)} />
-                         onClick={()=>{SetIsOpen(true);setUserInfo(cell.row.original)}}
-                      )} */}
                 </TableRow>
               ))
             ) : (
