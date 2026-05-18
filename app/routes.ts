@@ -18,8 +18,14 @@ export default [
         ...prefix("settings", [
             index("routes/settings/index.tsx")
         ]),
-        ...prefix("profile", [
-            index("routes/profile/index.tsx")
-        ])
-    ])
+        route ("profile","routes/profile/index.tsx",[
+            route("account","routes/profile/components/account.tsx"),
+         route("password", "routes/profile/components/password.tsx"),
+        ]),
+    ]),
 ] satisfies RouteConfig;
+// ...prefix("profile", [
+//     index("routes/profile/index.tsx"),
+//     route("account","routes/profile/components/account.tsx"),
+//     route("password", "routes/profile/components/password.tsx"),
+// ])

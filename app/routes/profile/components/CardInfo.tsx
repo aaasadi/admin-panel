@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import { rootUser } from "~/data/users";
 import { Input } from "~/components/ui/input";
 import { Button } from "~/components/ui/button";
 import { Label } from "~/components/ui/label";
 import { Card, CardContent, CardHeader } from "~/components/ui/card";
-import { CameraIcon, Pencil1Icon, TrashIcon } from "@radix-ui/react-icons";
+import { CameraIcon } from "@radix-ui/react-icons";
 export function Info() {
   const [formData, setFormData] = useState({
     name: rootUser.name || "",
