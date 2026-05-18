@@ -13,7 +13,7 @@ function ProfilePage() {
       <Header props={data} />
       <div className="flex flex-1 overflow-hidden">  
         <ProfileSidebar />
-        <main className="flex-1 overflow-auto p-4"> 
+                 <main className="flex-1 overflow-auto p-4"> 
           <Outlet />
         </main>
       </div>

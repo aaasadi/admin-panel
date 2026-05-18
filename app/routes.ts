@@ -12,9 +12,8 @@ export default [
             route("analytics", "routes/dashboard/analytics/index.tsx"),
             route("productivity", "routes/dashboard/productivity/index.tsx"),
         ]),
-        ...prefix("users", [
-            index("routes/users/index.tsx")
-        ]),
+        route("users", "routes/users/index.tsx"),
+        route("users/:id", "routes/users/components/details.tsx"),
         ...prefix("settings", [
             index("routes/settings/index.tsx")
         ]),
@@ -24,8 +23,3 @@ export default [
         ]),
     ]),
 ] satisfies RouteConfig;
-// ...prefix("profile", [
-//     index("routes/profile/index.tsx"),
-//     route("account","routes/profile/components/account.tsx"),
-//     route("password", "routes/profile/components/password.tsx"),
-// ])

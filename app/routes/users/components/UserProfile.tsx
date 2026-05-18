@@ -28,13 +28,7 @@ export function UserProfile({
   const handleForm = () => {};
    const handleRemove = () => {};
   return (
-    <Modal
-  isOpen={isOpen}
-  onRequestClose={handleClose}
-  className="fixed inset-0 flex items-center justify-center z-50"
-  overlayClassName="fixed inset-0  bg-opacity-50"
->
-  <Card className="w-1/4 h-auto border shadow-lg">
+    <Card className="w-1/4 h-auto border shadow-lg">
     <CardHeader className="flex justify-between items-start">
   <div>
     <h3 className="text-lg font-semibold">{data?.name}</h3>
@@ -75,6 +69,5 @@ export function UserProfile({
       </form>
     </CardContent>
   </Card>
-</Modal>
   );
 }
