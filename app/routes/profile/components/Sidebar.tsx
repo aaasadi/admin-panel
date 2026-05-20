@@ -1,55 +1,77 @@
-// ProfileSidebar.tsx
-import {
-  User,
-  Key,
-  Bell,
-  CreditCard,
-  Shield,
-  LogOut,
-  Settings,
-} from "lucide-react";
+import { User, Key, X } from "lucide-react";
 import { NavLink } from "react-router";
-import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import { Card } from "~/components/ui/card";
+
 import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
-  SidebarMenuSub,
-  SidebarMenuSubButton,
-  SidebarMenuSubItem,
   SidebarGroup,
   SidebarGroupLabel,
   SidebarGroupContent,
 } from "~/components/ui/sidebar";
 
-export function ProfileSidebar() {
-  return (
-    <aside>
+type Props = {
+  onClose?: () => void;
+};
 
-      {/* Content – reuse your existing menu components */}
-      <Card className="flex-1 overflow-auto p-2 h-full w-2xs bg-gray-50">
-        <div >
+export function ProfileSidebar({ onClose }: Props) {
+  return (
+    <aside className="w-72 h-full bg-background ">
+      <Card className="h-full  border-0 bg-gray-50 p-3 rounded-2xl border-b-4">
+        <div className="flex items-center justify-between mb-4 md:hidden">
+          <h2 className="font-semibold">Profile</h2>
+        </div>
         <SidebarGroup>
-          <SidebarGroupLabel>Profile</SidebarGroupLabel>
+          <SidebarGroupLabel>Settings</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  
-                  <NavLink to ="/profile/account"> <User /><span className="text-1xl" >Account</span></NavLink>
+                  <NavLink
+                    to="/profile/account"
+                    onClick={onClose}
+                    className={({ isActive }) =>
+                      `
+                      flex items-center gap-2 rounded-lg px-3 py-2 transition-colors
+                      ${
+                        isActive
+                          ? "bg-primary text-primary-foreground"
+                          : "hover:bg-muted"
+                      }
+                    `
+                    }
+                  >
+                    <User className="h-4 w-4" />
+                    <span>Account</span>
+                  </NavLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>
+
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
-                  
-                   <NavLink to ="/profile/password"><Key /><span className="text-1xl">Password</span></NavLink>
+                  <NavLink
+                    to="/profile/password"
+                    onClick={onClose}
+                    className={({ isActive }) =>
+                      `
+                      flex items-center gap-2 rounded-lg px-3 py-2 transition-colors
+                      ${
+                        isActive
+                          ? "bg-primary text-primary-foreground"
+                          : "hover:bg-muted"
+                      }
+                    `
+                    }
+                  >
+                    <Key className="h-4 w-4" />
+                    <span>Password</span>
+                  </NavLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
-      </div>
       </Card>
     </aside>
   );

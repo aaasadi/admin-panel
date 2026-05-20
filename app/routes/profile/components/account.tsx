@@ -7,7 +7,7 @@ import { Separator } from "~/components/ui/separator";
 
 export default function AccountSettings() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 max-w-3xl">
       <div>
         <h1 className="text-2xl font-bold tracking-tight">Account Settings</h1>
         <p className="text-muted-foreground">Manage your account details and email preferences.</p>
@@ -30,7 +30,9 @@ export default function AccountSettings() {
           </div>
         </CardContent>
         <CardFooter>
-          <Button>Save changes</Button>
+          <Button className="w-full sm:w-auto">
+  Save changes
+</Button>
         </CardFooter>
       </Card>
 
@@ -44,7 +46,9 @@ export default function AccountSettings() {
             <div className="h-16 w-16 rounded-full bg-muted flex items-center justify-center">
               <span className="text-xl font-medium">JD</span>
             </div>
-            <Button variant="outline">Upload new image</Button>
+           <Button variant="outline" className="w-full sm:w-auto">
+  Upload new image
+</Button>
           </div>
         </CardContent>
       </Card>
