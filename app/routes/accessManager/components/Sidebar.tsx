@@ -1,4 +1,4 @@
-import { User, Lock } from "lucide-react";
+import {  Globe,UserCog } from "lucide-react";
 import { NavLink } from "react-router";
 import { Card } from "~/components/ui/card";
 
@@ -15,18 +15,18 @@ type Props = {
   onClose?: () => void;
 };
 
-export function ProfileSidebar({ onClose }: Props) {
+export function PageSidebar({ onClose }: Props) {
   return (
     <aside className="w-72 h-full bg-background ">
       <Card className="h-full  border-0 bg-gray-50 p-3 rounded-2xl border-b-4">
         <SidebarGroup>
-          <SidebarGroupLabel>Settings</SidebarGroupLabel>
+          <SidebarGroupLabel>Accesses</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
                   <NavLink
-                    to="/profile/account"
+                    to="/access"
                     onClick={onClose}
                     className={({ isActive }) =>
                       `
@@ -39,8 +39,8 @@ export function ProfileSidebar({ onClose }: Props) {
                     `
                     }
                   >
-                    <User className="h-4 w-4" />
-                    <span>Account</span>
+                    <UserCog className="h-4 w-4" />
+                    <span>User permissions</span>
                   </NavLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -48,7 +48,7 @@ export function ProfileSidebar({ onClose }: Props) {
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
                   <NavLink
-                    to="/profile/password"
+                    to="/access"
                     onClick={onClose}
                     className={({ isActive }) =>
                       `
@@ -61,8 +61,8 @@ export function ProfileSidebar({ onClose }: Props) {
                     `
                     }
                   >
-                    <Lock className="h-4 w-4" />
-                    <span>Password</span>
+                    <Globe className="h-4 w-4" />
+                    <span>Website permissions</span>
                   </NavLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>

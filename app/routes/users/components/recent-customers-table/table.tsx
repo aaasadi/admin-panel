@@ -313,7 +313,6 @@ export function RecentCustomersTable({ data }: { data: RecentCustomerRow[] }) {
                     <TableCell key={cell.id} className="p-3 align-middle">
                       <Link
                         to={`/users/${cell.row.original.id}`}
-                        state={{ user: cell.row.original }}
                         className="block w-full h-full"
                       >
                         {flexRender(

@@ -7,7 +7,12 @@ import {
   ListTodo,
   UserRound,
   Users,
+  Key,
   type LucideIcon,
+  Shield,
+  Accessibility,
+  UserCheck,
+  Lock
 } from "lucide-react";
 
 export interface NavSubItem {
@@ -85,6 +90,10 @@ export const sidebarItems: NavGroup[] = [
         title: "Profile",
         url: "/profile",
         icon: UserRound
+      },  {
+        title: "Access managment",
+        url: "/access",
+        icon: Shield
       },
     ]
   }

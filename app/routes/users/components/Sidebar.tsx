@@ -1,7 +1,7 @@
-import { User, Lock } from "lucide-react";
+import { User, Key, X } from "lucide-react";
 import { NavLink } from "react-router";
 import { Card } from "~/components/ui/card";
-
+import { useParams } from "react-router";
 import {
   SidebarMenu,
   SidebarMenuButton,
@@ -16,6 +16,7 @@ type Props = {
 };
 
 export function ProfileSidebar({ onClose }: Props) {
+   const { id } = useParams();
   return (
     <aside className="w-72 h-full bg-background ">
       <Card className="h-full  border-0 bg-gray-50 p-3 rounded-2xl border-b-4">
@@ -26,7 +27,7 @@ export function ProfileSidebar({ onClose }: Props) {
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
                   <NavLink
-                    to="/profile/account"
+                    to={`/users/${id}/profile`}
                     onClick={onClose}
                     className={({ isActive }) =>
                       `
@@ -40,7 +41,7 @@ export function ProfileSidebar({ onClose }: Props) {
                     }
                   >
                     <User className="h-4 w-4" />
-                    <span>Account</span>
+                    <span>User profile</span>
                   </NavLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>
@@ -48,7 +49,7 @@ export function ProfileSidebar({ onClose }: Props) {
               <SidebarMenuItem>
                 <SidebarMenuButton asChild>
                   <NavLink
-                    to="/profile/password"
+                    to={`/users/${id}/access`}
                     onClick={onClose}
                     className={({ isActive }) =>
                       `
@@ -61,8 +62,8 @@ export function ProfileSidebar({ onClose }: Props) {
                     `
                     }
                   >
-                    <Lock className="h-4 w-4" />
-                    <span>Password</span>
+                    <Key className="h-4 w-4" />
+                    <span>Access management</span>
                   </NavLink>
                 </SidebarMenuButton>
               </SidebarMenuItem>

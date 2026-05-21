@@ -1,11 +1,12 @@
-// routes/users/component/details.tsx
-import { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router';
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "~/components/ui/card";
-import { Input } from "~/components/ui/input";
+// UserProfile.tsx (همه چیز در یک فایل)
+import { useState, useContext, createContext } from "react";
+import { Outlet, useLocation, Navigate, useParams } from "react-router";
+import { Header } from "./ItemPageHeader";
+import { ProfileBreadcrumb } from "./breadCrumb";
+import { ProfileSidebar } from "./Sidebar";
 import { Button } from "~/components/ui/button";
-import { Label } from "~/components/ui/label";
-import {Header} from "./ItemPageHeader";
+import { Menu } from "lucide-react";
+import userData from "./data.json";
 
 export interface UserProfileInfo {
   id: string;
@@ -20,90 +21,69 @@ export interface UserProfileInfo {
   lastLogin?: string;
 }
 
+export type ContextType = {
+  user: UserProfileInfo;
+}
+
 export default function UserProfile() {
-  const location = useLocation();
-  const navigate = useNavigate();
-  const user = location.state?.user as UserProfileInfo;
-
-  const [formData, setFormData] = useState({
-    name: user?.name || '',
-    email: user?.email || '',
-    plan: user?.plan || '',
-    status: user?.status || '',
-    phone: user?.phone || '09123456789',
-    role: user?.role || 'Regular User',
-  });
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  };
-
-  const handleSave = () => {
-  };
-
-  const handleRemove = () => {
-  };
-
-  if (!user) {
-    return <div className="flex justify-center items-center h-64">Loading...</div>;
-  }
+  const { id } = useParams();
+  const user = userData.find((u) => u.id === id);
+  if (!user) throw new Response("Not Found", { status: 404 });
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
-    <div className="space-y-6">
-      <Header props={{data:{ title: `${user.name}`, description:`ID: #${user.id} • Joined ${new Date(user.joined).toLocaleDateString()}` }}} />
-      <Card>
-        <CardHeader>
-          <CardTitle>Personal Information</CardTitle>
-          <CardDescription>Update name, email, role and phone.</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="grid gap-2">
-            <Label htmlFor="name">Full name</Label>
-            <Input id="name" name="name" value={formData.name} onChange={handleChange} />
-          </div>
-          <div className="grid gap-2">
-            <Label htmlFor="email">Email</Label>
-            <Input id="email" name="email" type="email" value={formData.email} onChange={handleChange} />
-          </div>
-          <div className="grid gap-2">
-            <Label htmlFor="role">Role</Label>
-            <Input id="role" name="role" value={formData.role} onChange={handleChange} />
-          </div>
-          <div className="grid gap-2">
-            <Label htmlFor="phone">Phone number</Label>
-            <Input id="phone" name="phone" value={formData.phone} onChange={handleChange} dir="ltr" />
-          </div>
-        </CardContent>
-        <CardFooter className="flex justify-between">
-          <Button onClick={handleSave}>Save changes</Button>
-          <Button variant="outline" onClick={() => navigate('/users')}>Back</Button>
-        </CardFooter>
-      </Card>
-
-      <Card>
-        <CardHeader>
-          <CardTitle>Subscription & Status</CardTitle>
-          <CardDescription>Plan, account status and billing info.</CardDescription>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="grid gap-2">
-            <Label htmlFor="plan">Active plan</Label>
-            <Input id="plan" name="plan" value={formData.plan} onChange={handleChange} />
-          </div>
-          <div className="grid gap-2">
-            <Label htmlFor="status">Account status</Label>
-            <Input id="status" name="status" value={formData.status} onChange={handleChange} />
-          </div>
-          <div className="grid gap-2">
-            <Label>Billing status</Label>
-            <Input value={user.billing} disabled className="bg-muted" />
-          </div>
-        </CardContent>
-        <CardFooter>
-          <Button variant="destructive" onClick={handleRemove} className="bg-red-600 hover:bg-red-700 text-black">
-            Delete user
+      <div className="flex flex-col h-full overflow-hidden">
+        <Header
+          props={{
+            title: `${user.name}`,
+            description: `ID: #${user.id} • Joined ${new Date(user.joined).toLocaleDateString()}`,
+            action: <ProfileBreadcrumb />,
+          }}
+        />
+        <div className="md:hidden flex items-center gap-2  px-4 py-3 sticky top-0 bg-background z-30">
+          <Button
+            size="icon"
+            variant="outline"
+            onClick={() => setSidebarOpen(true)}
+          >
+            <Menu className="h-5 w-5" />
           </Button>
-        </CardFooter>
-      </Card>
-    </div>
+        </div>
+
+        <div className="flex flex-1 overflow-hidden relative">
+          {/* MOBILE MENU BUTTON */}
+
+          {/* OVERLAY */}
+          {sidebarOpen && (
+            <div
+              className="fixed inset-0 bg-black/40 z-40 md:hidden"
+              onClick={() => setSidebarOpen(false)}
+            />
+          )}
+
+          {/* SIDEBAR */}
+          <div
+            className={`
+            fixed md:static top-0 left-0 z-50 h-full
+            transform transition-transform duration-300
+            ${
+              sidebarOpen
+                ? "translate-x-0"
+                : "-translate-x-full md:translate-x-0"
+            }
+          `}
+          >
+            <ProfileSidebar onClose={() => setSidebarOpen(false)} />
+          </div>
+
+          {/* CONTENT */}
+          <main className="flex-1 overflow-auto p-4 md:p-6 w-full">
+            <Outlet context={{ user } satisfies ContextType} />
+            <Navigate to="profile" replace />
+          </main>
+        </div>
+      </div>
+
   );
 }
+/** */

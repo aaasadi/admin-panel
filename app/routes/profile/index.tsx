@@ -15,21 +15,21 @@ function ProfilePage() {
     <div className="flex flex-col h-full overflow-hidden">
       <div>
         <Header
-        props={{
-          title: "Profile",
-          description: "Manage your profile settings",
-          action: <ProfileBreadcrumb />,
-        }}
-      />
+          props={{
+            title: "Profile",
+            description: "Manage your profile settings",
+            action: <ProfileBreadcrumb />,
+          }}
+        />
         <div className="md:hidden flex items-center gap-2  px-4 py-3 sticky top-0 bg-background z-30">
-    <Button
-      size="icon"
-      variant="outline"
-      onClick={() => setSidebarOpen(true)}
-    >
-      <Menu className="h-5 w-5" />
-    </Button>
-  </div>
+          <Button
+            size="icon"
+            variant="outline"
+            onClick={() => setSidebarOpen(true)}
+          >
+            <Menu className="h-5 w-5" />
+          </Button>
+        </div>
       </div>
 
       <div className="flex flex-1 overflow-hidden relative">
@@ -60,7 +60,6 @@ function ProfilePage() {
 
         {/* CONTENT */}
         <main className="flex-1 overflow-auto p-4 md:p-6 w-full">
-         
           <Navigate to="/profile/account" replace />
           <Outlet />
         </main>
