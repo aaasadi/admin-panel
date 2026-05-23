@@ -9,12 +9,10 @@ import {
 import { Input } from "~/components/ui/input";
 import { Button } from "~/components/ui/button";
 import { Label } from "~/components/ui/label";
-import { useNavigate, useOutlet, useOutletContext } from "react-router";
+import { useNavigate, useOutletContext } from "react-router";
 import {  type ContextType } from "./details";
 import { useState } from "react";
-
 export default function UserProfile() {
-  // const { user, setUser } = useUser();
   const navigate = useNavigate();
   const { user } = useOutletContext<ContextType>();
 

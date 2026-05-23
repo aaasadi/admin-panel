@@ -21,7 +21,7 @@ export default [
     ...prefix("users",[
       index("routes/users/index.tsx")
     ]),
-      route("users", "routes/users/index.tsx"),
+      // route("users", "routes/users/index.tsx"),
     route("users/:id", "routes/users/components/details.tsx", [
       route("profile", "routes/users/components/profile.tsx"),
       route("access", "routes/users/components/access.tsx"),
