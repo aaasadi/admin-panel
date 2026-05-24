@@ -14,12 +14,10 @@ import { useState } from "react";
 import { useOutletContext } from "react-router";
 export default function UserProfile() {
   const { user } = useOutletContext<ContextType>();
+  const permissions:string[] =["Add user","Remove user","Change setting"]
   const [formData, setFormData] = useState({
-    name: user.name || "",
-    email: user.email || "",
     role: user.role || "",
     status: user.status || "",
-    phone: user.phone || "09123456789",
   });
   const handleRemove = () => {};
   const handleChange = () => {};
@@ -27,14 +25,14 @@ export default function UserProfile() {
     <div className="space-y-6 max-w-3xl">
       <Card>
         <CardHeader>
-          <CardTitle>Subscription & Status</CardTitle>
+          <CardTitle>Edit user access</CardTitle>
           <CardDescription>
-            Plan, account status and billing info.
+            Plan, account status and permissions.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
           <div className="grid gap-2">
-            <Label htmlFor="plan">Active plan</Label>
+            <Label htmlFor="plan">Role</Label>
             <Input
               id="plan"
               name="plan"
@@ -51,6 +49,17 @@ export default function UserProfile() {
               onChange={handleChange}
             />
           </div>
+          <div className="grid gap-2">
+            <Label >Permissions</Label>
+           {permissions.map((item)=>(
+            <div className="flex">
+             <Label >
+              <Input type="checkbox" onChange={handleChange} className="size-5"/>
+              {item}
+             </Label>
+           </div>
+           ))}
+          </div>
         </CardContent>
         <CardFooter>
           <Button
@@ -58,7 +67,7 @@ export default function UserProfile() {
             onClick={handleRemove}
             className="bg-red-600 hover:bg-red-700 text-black"
           >
-            Delete user
+            Block user
           </Button>
         </CardFooter>
       </Card>

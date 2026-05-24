@@ -7,6 +7,7 @@ import { Menu } from "lucide-react";
 import userData from "./data.json";
 import {User,Key} from"lucide-react";
 import { PageSidebar } from "~/components/pagesSidebar";
+
 export interface UserProfileInfo {
   id: string;
   name: string;

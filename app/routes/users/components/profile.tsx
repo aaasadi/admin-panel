@@ -19,8 +19,6 @@ export default function UserProfile() {
   const [formData, setFormData] = useState({
     name: user.name || "",
     email: user.email || "",
-    role: user.role || "",
-    status: user.status || "",
     phone: user.phone || "09123456789",
   });
 
@@ -60,15 +58,6 @@ export default function UserProfile() {
               name="email"
               type="email"
               value={formData.email}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="grid gap-2">
-            <Label htmlFor="role">Role</Label>
-            <Input
-              id="role"
-              name="role"
-              value={formData.role}
               onChange={handleChange}
             />
           </div>
