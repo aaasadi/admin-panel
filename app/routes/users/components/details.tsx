@@ -11,12 +11,12 @@ export interface UserProfileInfo {
   id: string;
   name: string;
   email: string;
-  plan: string;
+  role: string;
   status: string;
   billing: string;
   joined: string;
+  update:string
   phone?: string;
-  role?: string;
   lastLogin?: string;
 }
 

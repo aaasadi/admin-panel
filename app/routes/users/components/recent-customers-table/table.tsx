@@ -60,13 +60,6 @@ const statusOptions = [
   { value: "Inactive", label: "Inactive" },
   { value: "Unsubscribed", label: "Unsubscribed" },
 ] as const;
-const billingOptions = [
-  { value: "all", label: "All" },
-  { value: "Paid", label: "Paid" },
-  { value: "Pending", label: "Pending" },
-  { value: "Overdue", label: "Overdue" },
-  { value: "Trial", label: "Trial" },
-] as const;
 const joinedDateOptions = [
   { value: "all", label: "All time" },
   { value: "30", label: "Last 30 days" },
@@ -122,8 +115,6 @@ export function RecentCustomersTable({ data }: { data: RecentCustomerRow[] }) {
     (table.getColumn("search")?.getFilterValue() as string) ?? "";
   const statusFilter =
     (table.getColumn("status")?.getFilterValue() as string) ?? "all";
-  const billingFilter =
-    (table.getColumn("billing")?.getFilterValue() as string) ?? "all";
   const joinedDateFilter =
     (table.getColumn("joinedWindow")?.getFilterValue() as string) ?? "all";
   const sortValue = React.useMemo(() => {
@@ -214,34 +205,6 @@ export function RecentCustomersTable({ data }: { data: RecentCustomerRow[] }) {
           </DropdownMenu>
         </div>
         <div className="flex flex-col gap-2 sm:flex-row sm:items-center xl:w-auto">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="sm">
-                <CreditCard />
-                Billing
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuRadioGroup
-                value={billingFilter}
-                onValueChange={(value) => {
-                  table
-                    .getColumn("billing")
-                    ?.setFilterValue(value === "all" ? undefined : value);
-                  table.setPageIndex(0);
-                }}
-              >
-                {billingOptions.map((billing) => (
-                  <DropdownMenuRadioItem
-                    key={billing.value}
-                    value={billing.value}
-                  >
-                    {billing.label}
-                  </DropdownMenuRadioItem>
-                ))}
-              </DropdownMenuRadioGroup>
-            </DropdownMenuContent>
-          </DropdownMenu>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
               <Button variant="outline" size="sm">

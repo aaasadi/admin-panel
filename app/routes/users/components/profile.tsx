@@ -19,10 +19,9 @@ export default function UserProfile() {
   const [formData, setFormData] = useState({
     name: user.name || "",
     email: user.email || "",
-    plan: user.plan || "",
+    role: user.role || "",
     status: user.status || "",
     phone: user.phone || "09123456789",
-    role: user.role || "Regular User",
   });
 
   const handleChange = () => {};
