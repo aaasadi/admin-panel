@@ -1,5 +1,5 @@
-import { CircleUser, CreditCard, EllipsisVertical, LogOut, MessageSquareDot } from "lucide-react";
-
+import { CircleUser, CreditCard, EllipsisVertical, LogOut, MessageSquareDot,User } from "lucide-react";
+import { Link } from "react-router";
 import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import {
   DropdownMenu,
@@ -64,6 +64,12 @@ export function NavUser({
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
+              <DropdownMenuItem>
+            <Link to="/profile" className="flex  gap-2">
+              <User/>
+              Profile
+            </Link>
+          </DropdownMenuItem>
               <DropdownMenuItem>
                 <CircleUser />
                 Account
