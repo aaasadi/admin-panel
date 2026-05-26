@@ -82,20 +82,9 @@ export const recentCustomersColumns: ColumnDef<RecentCustomerRow>[] = [
     ),
   },
   {
-    accessorKey: "billing",
-    header: "Billing",
-    filterFn: "equalsString",
-    cell: ({ row }) => (
-      <Badge variant="outline" className="px-1.5 text-muted-foreground">
-        {billingIcon(row.original.billing)}
-        {row.original.billing}
-      </Badge>
-    ),
-  },
-  {
-    accessorKey: "plan",
-    header: "Plan",
-    cell: ({ row }) => <span className="text-sm">{row.original.plan}</span>,
+    accessorKey: "role",
+    header: "Role",
+    cell: ({ row }) => <span className="text-sm">{row.original.role}</span>,
   },
   {
     id: "joinedWindow",
@@ -116,6 +105,20 @@ export const recentCustomersColumns: ColumnDef<RecentCustomerRow>[] = [
       const baseDate = parseISO(row.original.joined);
       const joinedAt = addMinutes(baseDate, 9 * 60 + (Number(row.original.id) % 12) * 17);
 
+      return (
+        <div className="grid gap-0.5">
+          <span className="text-sm">{format(joinedAt, "do MMMM yyyy")}</span>
+          <span className="text-muted-foreground text-xs">at {format(joinedAt, "h:mm a")}</span>
+        </div>
+      );
+    },
+  },
+   {
+    accessorKey: "update",
+    header: "Update",
+    cell: ({ row }) => {
+      const baseDate = parseISO(row.original.update);
+      const joinedAt = addMinutes(baseDate, 9 * 60 + (Number(row.original.id) % 12) * 17);
       return (
         <div className="grid gap-0.5">
           <span className="text-sm">{format(joinedAt, "do MMMM yyyy")}</span>

@@ -1,4 +1,4 @@
-import { Header } from "./components/ItemPageHeader";
+import { Header } from "~/components/pagesHeader";
 
 function SettingsPage() {
     return (

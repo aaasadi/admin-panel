@@ -9,22 +9,17 @@ import {
 import { Input } from "~/components/ui/input";
 import { Button } from "~/components/ui/button";
 import { Label } from "~/components/ui/label";
-import { useNavigate, useOutlet, useOutletContext } from "react-router";
+import { useNavigate, useOutletContext } from "react-router";
 import {  type ContextType } from "./details";
 import { useState } from "react";
-
 export default function UserProfile() {
-  // const { user, setUser } = useUser();
   const navigate = useNavigate();
   const { user } = useOutletContext<ContextType>();
 
   const [formData, setFormData] = useState({
     name: user.name || "",
     email: user.email || "",
-    plan: user.plan || "",
-    status: user.status || "",
     phone: user.phone || "09123456789",
-    role: user.role || "Regular User",
   });
 
   const handleChange = () => {};
@@ -63,15 +58,6 @@ export default function UserProfile() {
               name="email"
               type="email"
               value={formData.email}
-              onChange={handleChange}
-            />
-          </div>
-          <div className="grid gap-2">
-            <Label htmlFor="role">Role</Label>
-            <Input
-              id="role"
-              name="role"
-              value={formData.role}
               onChange={handleChange}
             />
           </div>

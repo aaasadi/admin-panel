@@ -10,12 +10,6 @@ import {
   BreadcrumbSeparator,
 } from "~/components/ui/breadcrumb";
 
-const breadcrumbMap: Record<string, string> = {
-  "/profile": "profile",
-  "/profile/account": "account",
-  "/profile/password": "password",
-};
-
 export  function ProfileBreadcrumb() {
   const location = useLocation();
 
@@ -34,7 +28,7 @@ export  function ProfileBreadcrumb() {
             index === pathnames.length - 1;
 
           const label =
-            breadcrumbMap[to] || pathnames[index];
+             pathnames[index];
 
           return (
             <React.Fragment key={to}>

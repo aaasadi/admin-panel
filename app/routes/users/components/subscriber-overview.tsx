@@ -1,13 +1,6 @@
-import { Download } from "lucide-react";
-
-import { Button } from "~/components/ui/button";
 import {
   Card,
-  CardAction,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
+  CardContent
 } from "~/components/ui/card";
 
 import customersData from "./data.json";

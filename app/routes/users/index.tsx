@@ -1,5 +1,5 @@
 import { SubscriberOverview } from "./components/subscriber-overview";
-import { Header } from "./components/ItemPageHeader";
+import { Header } from "~/components/pagesHeader";
 import { Outlet } from "react-router";
 
 function UsersPage() {

@@ -7,12 +7,8 @@ import {
   ListTodo,
   UserRound,
   Users,
-  Key,
   type LucideIcon,
   Shield,
-  Accessibility,
-  UserCheck,
-  Lock
 } from "lucide-react";
 
 export interface NavSubItem {

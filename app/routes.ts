@@ -18,19 +18,35 @@ export default [
       route("analytics", "routes/dashboard/analytics/index.tsx"),
       route("productivity", "routes/dashboard/productivity/index.tsx"),
     ]),
-    ...prefix("users",[
-      index("routes/users/index.tsx")
-    ]),
-      route("users", "routes/users/index.tsx"),
+
+    ...prefix("users", [index("routes/users/index.tsx")]),
+
     route("users/:id", "routes/users/components/details.tsx", [
       route("profile", "routes/users/components/profile.tsx"),
       route("access", "routes/users/components/access.tsx"),
     ]),
+
     ...prefix("settings", [index("routes/settings/index.tsx")]),
+
     route("profile", "routes/profile/index.tsx", [
       route("account", "routes/profile/components/account.tsx"),
       route("password", "routes/profile/components/password.tsx"),
     ]),
-    route("access","routes/accessManager/index.tsx")
+    route("access", "routes/accessManager/index.tsx", [
+      route("rolemanager", "routes/accessManager/components/roleManager.tsx", [
+        route("addrole", "routes/accessManager/components/addRole.tsx"),
+        route (":id","routes/accessManager/components/editRole.tsx")
+      ]),
+      route("permissionsmanager", "routes/accessManager/components/permissionsManage.tsx",[
+          route("addpermission", "routes/accessManager/components/addPermission.tsx"),
+          route (":id","routes/accessManager/components/editPermission.tsx")
+        ]
+        
+      ),
+      route(
+        "websitepermissions",
+        "routes/accessManager/components/websitepermissions.tsx",
+      ),
+    ]),
   ]),
 ] satisfies RouteConfig;
